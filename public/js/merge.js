@@ -7,5 +7,6 @@ const back = document.getElementById("back");
 
 //Go to profile page
 back.addEventListener("click", () => {
-  window.location.assign("../profile");
+  location.href = "profile.html";
+  // window.location.assign("../profile");
 });
