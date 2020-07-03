@@ -23,3 +23,35 @@ const signInWithMail = document.getElementById("signInWithMail");
 const signInWithPhone = document.getElementById("signInWithPhone");
 const signUp = document.getElementById("signUp");
 const failureModal = document.querySelector(".failure");
+
+const auth = firebase.auth();
+
+//Sign in function - similar to the one on signup.js
+
+const signInWithEmailFunction = () => {
+  const email = mailField.value;
+  const password = passwordField.value;
+
+  //Built in firebase function responsible for authentication
+  auth
+    .signInWithEmailAndPassword(email, password)
+    .then(() => {
+      //Signed in successfully
+      alert("Signed in");
+      location.href = "profile.html";
+    })
+    .catch((error) => {
+      //Something went wrong
+      console.error(error);
+    });
+};
+
+//Adds the click event to the signInWithMail button
+
+signInWithMail.addEventListener("click", signInWithEmailFunction);
+
+//Go to signup page
+
+signUp.addEventListener("click", () => {
+  location.href = "signup.html";
+});
