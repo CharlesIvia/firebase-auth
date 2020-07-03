@@ -3,6 +3,7 @@ const emailField = document.getElementById("mail");
 const passWordField = document.getElementById("password");
 const signUp = document.getElementById("signUp");
 const signInWithMail = document.getElementById("signIn");
+const resetPassword = document.getElementById("resetPassword");
 
 const auth = firebase.auth();
 
@@ -61,3 +62,22 @@ const signInWithEmailFunction = () => {
 };
 
 signInWithMail.addEventListener("click", signInWithEmailFunction);
+
+//Password reset fn
+
+const resetPasswordFunction = () => {
+  const email = emailField.value;
+
+  //Built in firebase function that sends password reset emails
+
+  auth
+    .sendPasswordResetEmail(email)
+    .then(() => {
+      alert("Password reset email sent successfully!");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+resetPassword.addEventListener("click", resetPasswordFunction);
