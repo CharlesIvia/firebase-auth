@@ -24,6 +24,7 @@ const signInWithPhone = document.getElementById("signInWithPhone");
 const signUp = document.getElementById("signUp");
 const failureModal = document.querySelector(".failure");
 const signInWithGoogleBtn = document.getElementById("signInWithGoogle");
+const signInWithFacebookBtn = document.getElementById("signInWithFacebook");
 
 const auth = firebase.auth();
 
@@ -76,6 +77,24 @@ const signInWithGoogleFn = () => {
 signInWithGoogleBtn.addEventListener("click", signInWithGoogleFn);
 
 //auth.signInWithRedirect(googleProvider) - redirects to initial page after confirmation
+
+//FACEBOOK SIGNIN- create facebook app first
+
+const signInWithFacebookFn = () => {
+  const facebookProvider = new firebase.auth.FacebookAuthProvider();
+  //or auth.signInWithRedirect(facebookProvider)
+  auth
+    .signInWithPopup(facebookProvider)
+    .then(() => {
+      alert("Facebook sign in successfull");
+      window.location.href = "profile.html";
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+signInWithFacebookBtn.addEventListener("click", signInWithFacebookFn);
 
 //Animations
 const initializeInputAnimationState = (fieldName, labelNumber) => {
