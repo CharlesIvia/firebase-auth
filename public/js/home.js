@@ -55,3 +55,64 @@ signInWithMail.addEventListener("click", signInWithEmailFunction);
 signUp.addEventListener("click", () => {
   location.href = "signup.html";
 });
+
+//Animations
+const initializeInputAnimationState = (fieldName, labelNumber) => {
+  if (fieldName.value)
+    labels.item(labelNumber).className = "initial-focused-field";
+  else labels.item(labelNumber).className = "initial-unfocused-field";
+};
+
+authenticationMethod1.addEventListener("change", () => {
+  mailContainer.className = shownMailContainer;
+  socialMediaContainer.className = hiddenPhoneContainer;
+  phoneContainer.className = hiddenSocialMediaContainer;
+  initializeInputAnimationState(mailField, 0);
+  initializeInputAnimationState(passwordField, 1);
+});
+
+authenticationMethod2.addEventListener("change", () => {
+  mailContainer.className = hiddenMailContainer;
+  socialMediaContainer.className = shownSocialMediaContainer;
+  phoneContainer.className = hiddenSocialMediaContainer;
+});
+
+authenticationMethod3.addEventListener("change", () => {
+  mailContainer.className = hiddenMailContainer;
+  socialMediaContainer.className = hiddenPhoneContainer;
+  phoneContainer.className = shownPhoneContainer;
+  initializeInputAnimationState(phoneNumberField, 2);
+  initializeInputAnimationState(codeField, 3);
+});
+
+mailField.addEventListener("focus", () => {
+  if (!mailField.value) labels.item(0).className = "focused-field";
+});
+
+passwordField.addEventListener("focus", () => {
+  if (!passwordField.value) labels.item(1).className = "focused-field";
+});
+
+mailField.addEventListener("blur", () => {
+  if (!mailField.value) labels.item(0).className = "unfocused-field";
+});
+
+passwordField.addEventListener("blur", () => {
+  if (!passwordField.value) labels.item(1).className = "unfocused-field";
+});
+
+phoneNumberField.addEventListener("focus", () => {
+  if (!phoneNumberField.value) labels.item(2).className = "focused-field";
+});
+
+codeField.addEventListener("focus", () => {
+  if (!codeField.value) labels.item(3).className = "focused-field";
+});
+
+phoneNumberField.addEventListener("blur", () => {
+  if (!phoneNumberField.value) labels.item(2).className = "unfocused-field";
+});
+
+codeField.addEventListener("blur", () => {
+  if (!codeField.value) labels.item(3).className = "unfocused-field";
+});
