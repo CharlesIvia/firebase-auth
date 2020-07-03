@@ -2,6 +2,7 @@
 const emailField = document.getElementById("mail");
 const passWordField = document.getElementById("password");
 const signUp = document.getElementById("signUp");
+const signInWithMail = document.getElementById("signIn");
 
 const auth = firebase.auth();
 
@@ -41,3 +42,22 @@ const sendVerificationEmail = () => {
 };
 
 signUp.addEventListener("click", signUpFunction);
+
+//Sign in function
+
+const signInWithEmailFunction = () => {
+  const email = emailField.value;
+  const password = passWordField.value;
+
+  //Built in firebase fn for authentication
+  auth
+    .signInWithEmailAndPassword(email, password)
+    .then(() => {
+      alert("Signed in successfully!");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+signInWithMail.addEventListener("click", signInWithEmailFunction);
