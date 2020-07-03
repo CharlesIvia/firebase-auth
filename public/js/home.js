@@ -23,6 +23,7 @@ const signInWithMail = document.getElementById("signInWithMail");
 const signInWithPhone = document.getElementById("signInWithPhone");
 const signUp = document.getElementById("signUp");
 const failureModal = document.querySelector(".failure");
+const signInWithGoogleBtn = document.getElementById("signInWithGoogle");
 
 const auth = firebase.auth();
 
@@ -55,6 +56,26 @@ signInWithMail.addEventListener("click", signInWithEmailFunction);
 signUp.addEventListener("click", () => {
   location.href = "signup.html";
 });
+
+//SIGN IN WITH GOOGLE
+
+const signInWithGoogleFn = () => {
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+  auth
+    .signInWithPopup(googleProvider)
+    .then(() => {
+      alert("You are signed in with Google.");
+      window.location.href = "profile.html";
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+signInWithGoogleBtn.addEventListener("click", signInWithGoogleFn);
+
+//auth.signInWithRedirect(googleProvider) - redirects to initial page after confirmation
 
 //Animations
 const initializeInputAnimationState = (fieldName, labelNumber) => {
