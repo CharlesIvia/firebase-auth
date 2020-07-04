@@ -70,6 +70,22 @@ const changeNameAndPhoto = (user, newNameAndPhoto) => {
         console.error(error);
       });
   }
+
+  //Cnages the displayName only
+  else if (newDisplayName) {
+    user
+      .updateProfile({
+        displayName: newDisplayName,
+      })
+      .then(() => {
+        alert("Display name changed successfully.");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+ 
 };
 
 //Event listener
