@@ -113,6 +113,20 @@ const createCredential = (user) => {
   return credential;
 };
 
+//change passoword fn
+
+const changePassword = (user, credential, newPassword) => {
+  user
+    .reauthenticateWithCredential(credential)
+    .then(() => {
+      user.updatePassword(newPassword);
+      alert("Password updated");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 //Event listener
 
 editButton.addEventListener("click", editInformation);
