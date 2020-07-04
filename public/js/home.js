@@ -18,6 +18,8 @@ const mailField = document.getElementById("mail");
 const passwordField = document.getElementById("password");
 const phoneNumberField = document.getElementById("phoneNumber");
 const codeField = document.getElementById("code");
+const getCodeButton = document.getElementById("getCode");
+const signInWithPhoneButton = document.getElementById("signInWithPhone");
 const labels = document.getElementsByTagName("label");
 const signInWithMail = document.getElementById("signInWithMail");
 const signInWithPhone = document.getElementById("signInWithPhone");
@@ -115,6 +117,17 @@ const signInWithTwitterFn = () => {
 };
 
 signInWithTwitterBtn.addEventListener("click", signInWithTwitterFn);
+
+//Firebase Authentication with phone provider
+
+//Create and render the captcha
+window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+  "recaptcha-container"
+);
+
+recaptchaVerifier.render().then((widgetId) => {
+  window.recaptchaWidgetId = widgetId;
+});
 
 //Animations
 const initializeInputAnimationState = (fieldName, labelNumber) => {
