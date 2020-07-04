@@ -129,6 +129,33 @@ recaptchaVerifier.render().then((widgetId) => {
   window.recaptchaWidgetId = widgetId;
 });
 
+//verification code
+
+const sendVerificationCode = () => {
+  const phoneNumber = phoneNumberField.value;
+  const appVerifier = window.recaptchaVerifier;
+
+  //Send 6 digit code to user's phone
+
+  auth
+    .signInWithPhoneNumber(phoneNumber, appVerifier)
+    .then((confirmationResult) => {
+      const sentCodeId = confirmationResult.verificationId;
+
+      //Sign in if verification code is set correctly
+
+      signInWithPhoneButton.addEventListener("click", () => {
+        signInWithPhoneFn(sentCodeId);
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+
+
+
 //Animations
 const initializeInputAnimationState = (fieldName, labelNumber) => {
   if (fieldName.value)
