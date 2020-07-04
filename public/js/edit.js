@@ -127,6 +127,20 @@ const changePassword = (user, credential, newPassword) => {
     });
 };
 
+//change email fn
+
+const changeEmail = (user, credential, newEmail) => {
+  user
+    .reauthenticateWithCredential(credential)
+    .then((user) => {
+      user.updateEmail(newEmail);
+      alert("Email updated");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 //Event listener
 
 editButton.addEventListener("click", editInformation);
