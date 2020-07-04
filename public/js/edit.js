@@ -100,6 +100,19 @@ const changeNameAndPhoto = (user, newNameAndPhoto) => {
   }
 };
 
+// Creates credential for the reauthenticationWithCredential function which is a most do
+// in order to change critical information such as changing email, password or
+// deleting the account
+
+const createCredential = (user) => {
+  const password = prompt("Password:");
+  const credential = firebase.auth.EmailAuthProvider.credential(
+    user.email,
+    password
+  );
+  return credential;
+};
+
 //Event listener
 
 editButton.addEventListener("click", editInformation);
