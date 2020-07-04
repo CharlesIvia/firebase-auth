@@ -176,6 +176,16 @@ const signInWithPhoneFn = (sentCodeId) => {
 };
 
 getCodeButton.addEventListener("click", sendVerificationCode);
+
+//Preserving User's data
+
+auth.onAuthStateChanged((user) => {
+  console.log(user);
+
+  if (user.displayName) {
+    console.log(user.displayName);
+  }
+});
 //Animations
 const initializeInputAnimationState = (fieldName, labelNumber) => {
   if (fieldName.value)
