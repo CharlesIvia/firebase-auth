@@ -6,6 +6,16 @@ const photoHolder = document.getElementById("photoHolder");
 
 const auth = firebase.auth();
 
+//Preserving User's data
+
+auth.onAuthStateChanged((user) => {
+  console.log(user);
+
+  if (user.displayName) {
+    console.log(user.displayName);
+  }
+});
+
 logOut.addEventListener("click", () => {
   //signOut() is a built in firebase function responsible for signing a user out
   auth
