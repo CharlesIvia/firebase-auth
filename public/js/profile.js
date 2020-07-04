@@ -16,6 +16,8 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+//Signout logic
+
 logOut.addEventListener("click", () => {
   //signOut() is a built in firebase function responsible for signing a user out
   auth
