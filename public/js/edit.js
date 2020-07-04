@@ -51,6 +51,30 @@ const editInformation = () => {
   }
 };
 
+//Change name and photo fn
+
+const changeNameAndPhoto = (user, newNameAndPhoto) => {
+  const { newDisplayName, newPhotoURL } = newNameAndPhoto;
+  //Changes displayName and photoUrl properties
+
+  if (newDisplayName && newPhotoURL) {
+    user
+      .updateProfile({
+        displayName: newDisplayName,
+        photoUrl: newPhotoURL,
+      })
+      .then(() => {
+        alert("Profile updated successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+};
+
+//Event listener
+
+editButton.addEventListener("click", editInformation);
 //Animations
 
 mailField.addEventListener("focus", () => {
