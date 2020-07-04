@@ -25,6 +25,7 @@ const signUp = document.getElementById("signUp");
 const failureModal = document.querySelector(".failure");
 const signInWithGoogleBtn = document.getElementById("signInWithGoogle");
 const signInWithFacebookBtn = document.getElementById("signInWithFacebook");
+const signInWithTwitterBtn = document.getElementById("signInWithTwitter");
 
 const auth = firebase.auth();
 
@@ -95,6 +96,25 @@ const signInWithFacebookFn = () => {
 };
 
 signInWithFacebookBtn.addEventListener("click", signInWithFacebookFn);
+
+//FIREBASE AUTHENTICATION WITH TWITTER
+
+const signInWithTwitterFn = () => {
+  const twitterProvider = new firebase.auth.TwitterAuthProvider();
+  //auth.signInWithRedirect(twitterProvider)
+
+  auth
+    .signInWithPopup(twitterProvider)
+    .then(() => {
+      alert("Twitter sign in successfull.");
+      window.location.href = "profile.html";
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+signInWithTwitterBtn.addEventListener("click", signInWithTwitterFn);
 
 //Animations
 const initializeInputAnimationState = (fieldName, labelNumber) => {
