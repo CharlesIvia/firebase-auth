@@ -85,7 +85,19 @@ const changeNameAndPhoto = (user, newNameAndPhoto) => {
       });
   }
 
- 
+  //Changes photoUrl only
+  else if (newPhotoURL) {
+    user
+      .updateProfile({
+        photoUrl: newPhotoURL,
+      })
+      .then(() => {
+        alert("Photo changed successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 };
 
 //Event listener
