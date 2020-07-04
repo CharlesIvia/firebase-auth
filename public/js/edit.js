@@ -141,6 +141,22 @@ const changeEmail = (user, credential, newEmail) => {
     });
 };
 
+//Delete account fn
+
+const deleteAccount = () => {
+  const user = auth.currentUser;
+  const credential = createCredential(user);
+  user
+    .reauthenticateWithCredential(credential)
+    .then(() => {
+      user.delete();
+      alert("Your account has been deleted!");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 //Event listener
 
 editButton.addEventListener("click", editInformation);
